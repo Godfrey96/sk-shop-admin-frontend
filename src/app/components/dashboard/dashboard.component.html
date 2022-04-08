@@ -1,0 +1,53 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+    <mat-card fxFlex="25">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>Products</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="text">
+                <h4>{{ this.productsCount }}</h4>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="25">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>Orders</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="text">
+                <h4>{{ this.ordersCount }}</h4>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="25">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>Users</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="text">
+                <h4>{{ this.usersCount }}</h4>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="25">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>Total Sales</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="text">
+                <h4>{{ this.totalSalesCount| currency: 'R' }}</h4>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

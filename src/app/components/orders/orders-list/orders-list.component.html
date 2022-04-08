@@ -1,0 +1,67 @@
+<div>
+    <h1>Orders</h1>
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+        <!--Customer Name Column -->
+        <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.firstname}} </td>
+        </ng-container>
+
+
+        <!-- Total price Column -->
+        <ng-container matColumnDef="totalPrice">
+            <th mat-header-cell *matHeaderCellDef>Total Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency: 'R'}}</td>
+        </ng-container>
+
+        <!-- Date ordered Column -->
+        <ng-container matColumnDef="dateOrdered">
+            <th mat-header-cell *matHeaderCellDef> Date Ordered </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateOrdered | date: 'short'}} </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <!-- <td mat-cell *matCellDef="let element"> {{element.status}} </td> -->
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button
+                    [color]="orderStatus[element.status]?.color ? orderStatus[element.status]?.color : 'accent'">
+                    {{ orderStatus[element.status]?.label }}
+                </button>
+            </td>
+        </ng-container>
+
+        <!-- action buttons Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="editProduct(element.id)">
+                        <mat-icon>edit</mat-icon>
+                        Edit
+                    </button>
+                    <button mat-menu-item (click)="deleteProduct(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        Delete
+                    </button>
+                </mat-menu>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="orders.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>

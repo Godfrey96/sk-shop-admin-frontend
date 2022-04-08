@@ -1,0 +1,124 @@
+<mat-accordion>
+    <!-- <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                This is the expansion title
+            </mat-panel-title>
+            <mat-panel-description>
+                This is a summary of the content
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>This is the primary content of the panel.</p>
+    </mat-expansion-panel> -->
+    <hr />
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <!-- Self aware panel -->
+            </mat-panel-title>
+            <mat-panel-description>
+                Order Details
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+            <div class="col-3">
+                <h4 class="fw-bold">Order Id</h4>
+                <p>{{ order?.id }}</p>
+            </div>
+            <div class="col-3">
+                <h4 class="fw-bold">Order Date Ordered</h4>
+                <p>{{ order?.dateOrdered | date:'short' }}</p>
+            </div>
+            <div class="col-3">
+                <h4 class="fw-bold">Order Status</h4>
+                <mat-form-field appearance="fill">
+                    <!-- <mat-label>Choose an option</mat-label> -->
+                    <mat-select [(ngModel)]="selectedStatus" (selectionChange)="onStatusChange($event)">
+                        <mat-option *ngFor="let status of orderStatuses" [value]="status.id">
+                            {{status.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <h4 class="fw-bold">Order Total Price</h4>
+                <p>{{ order?.totalPrice | currency: 'R' }}</p>
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+    <hr />
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <!-- Self aware panel -->
+            </mat-panel-title>
+            <mat-panel-description>
+                Order Items
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="grid">
+            <div class="grid mb-5">
+                <div class="row">
+                    <div class="col-3 fw-bold">Name</div>
+                    <div class="col-3 fw-bold">Category</div>
+                    <div class="col-3 fw-bold">Price</div>
+                    <div class="col-3 fw-bold">Quantity</div>
+                    <!-- <div class="col-2 fw-bold">Subtotal</div> -->
+                </div>
+            </div>
+            <div class="grid mb-5" *ngFor="let orderItem of order?.orderItems">
+                <div class="row">
+                    <div class="col-3">{{ orderItem.product?.name }}</div>
+                    <div class="col-3">{{ orderItem.product?.category.name }}</div>
+                    <div class="col-3">{{ orderItem.product?.price | currency: 'R' }}</div>
+                    <div class="col-3">{{ orderItem.quantity }}</div>
+                    <!-- <div class="col-2">{{ orderItem.room?.price * orderItem.quantity | currency: 'R' }} -->
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="grid" style="color: green;">
+            <div class="row">
+                <div class="col-9 col-offset-8 fw-bold">Total Price</div>
+                <div class="col-3 fw-bold">{{ order?.totalPrice | currency: 'R' }}</div>
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+    <hr />
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <!-- Self aware panel -->
+            </mat-panel-title>
+            <mat-panel-description>
+                Customer Info
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="grid">
+            <div class="row">
+                <div class="col-4">
+                    <h5 class="fw-bold">Customer Fullname</h5>
+                    <p>
+                        {{ user?.firstname }} {{ user?.lastname }}
+                    </p>
+                </div>
+
+                <div class="col-4" style="align-items: flex-end;">
+                    <h5 class="fw-bold">Customer Contact</h5>
+                    <p>{{ user?.phone }}</p>
+                </div>
+
+                <div class="col-4" style="align-items: flex-end;">
+                    <h5 class="fw-bold">Customer Email</h5>
+                    <p>{{ user?.email }}</p>
+                </div>
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+</mat-accordion>

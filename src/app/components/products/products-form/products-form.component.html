@@ -1,0 +1,84 @@
+<h1 mat-dialog-title>{{ titleForm }} Product Form</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="productForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Product Name</mat-label>
+            <input formControlName='name' matInput placeholder="Product Name">
+            <mat-error *ngIf="productFormError['name'].invalid && isSubmitted">
+                Product name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName='category' placeholder="Product Category">
+                <mat-option *ngFor="let category of categories" [value]="category.id">
+                    {{category?.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="productFormError['category'].invalid && isSubmitted">
+                Product category is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input type="number" formControlName='price' matInput placeholder="Price">
+            <mat-error *ngIf="productFormError['price'].invalid && isSubmitted">
+                Product price is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Number of Stock</mat-label>
+            <input type="number" formControlName='countInStock' matInput placeholder="Count in stock">
+            <mat-error *ngIf="productFormError['countInStock'].invalid && isSubmitted">
+                Number of stock is required
+            </mat-error>
+        </mat-form-field>
+
+        <div>
+            <mat-slide-toggle formControlName='isFeatured'>isFeatured</mat-slide-toggle>
+        </div>
+
+        <div>
+            <mat-slide-toggle formControlName='isBestSeller'>isBestSeller</mat-slide-toggle>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea formControlName='description' matInput placeholder="Type something about the product"></textarea>
+            <mat-error *ngIf="productFormError['description'].invalid && isSubmitted">
+                Product description is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <!-- <div> -->
+            <mat-toolbar>
+                <!-- Display files names -->
+                <input matInput placeholder="Choose Image" readonly name="name" />
+                <!-- Browse Button -->
+                <button mat-flat-button color="primary">Browse File</button>
+            </mat-toolbar>
+            <!-- Fetch selected filed on change -->
+            <input type="file" id="uploadFile" (change)="onImageUpload($event)" accept="image/*" />
+            <!-- </div> -->
+
+            <div class="p-col-2 mt-2 p-pl-0">
+                <img style="width: 100%" [src]="imageDisplay" alt="" />
+                <!-- <img style="width: 100%" alt="" /> -->
+            </div>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" (click)="onCancle()">
+        Close
+    </button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addProduct()">
+        {{actionBtn}}
+    </button>
+</div>

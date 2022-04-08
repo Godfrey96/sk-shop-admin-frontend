@@ -1,0 +1,30 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary">
+            Admin Login Page
+        </mat-toolbar>
+        <form [formGroup]="loginFormGroup" fxLayoutAlign="stretch" fxLayout="column" class="login-form"
+            (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="Enter email">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" placeholder="Enter password">
+            </mat-form-field>
+
+            <button mat-raised-button type="submit" color="primary" (onClick)="onSubmit()">
+                <!-- <mat-spinner *ngIf="!isLoading"></mat-spinner> -->
+                Login
+            </button>
+            <!-- <div fxLayoutAlign="center" *ngIf="isSubmitted && isLoading">
+                <mat-spinner></mat-spinner>
+            </div> -->
+            <!-- <div class="col-12" *ngIf="isSubmitted && authError">
+                <mat-error>{{ authMessage }}</mat-error>
+            </div> -->
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="toggleSideBar()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>SK-Shop</span>
+    <span class="example-spacer"></span>
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+    </button> -->
+    <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon"
+        aria-label="Example icon-button with share icon">
+        <mat-icon>person_outline</mat-icon>
+    </button>
+    <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            Profile
+        </button>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            Sign Out
+        </button>
+    </mat-menu>
+</mat-toolbar>

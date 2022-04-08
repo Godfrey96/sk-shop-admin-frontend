@@ -1,0 +1,79 @@
+<div>
+    <button mat-raised-button (click)="openDialog()" color="primary">New Product</button>
+</div>
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput placeholder="Search..." (keyup)="applyFilter($event)" />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- image Column -->
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Image </th>
+            <td mat-cell *matCellDef="let element">
+                <img [src]="element.image" alt="">
+            </td>
+        </ng-container>
+
+        <!-- count in stock Column -->
+        <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Category </th>
+            <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+        </ng-container>
+
+        <!-- count in stock Column -->
+        <ng-container matColumnDef="countInStock">
+            <th mat-header-cell *matHeaderCellDef> Count in Stock </th>
+            <td mat-cell *matCellDef="let element"> {{element.countInStock}} </td>
+        </ng-container>
+
+        <!-- number of reviews Column -->
+        <ng-container matColumnDef="numReviews">
+            <th mat-header-cell *matHeaderCellDef> No. of Reviews </th>
+            <td mat-cell *matCellDef="let element"> {{element.numReviews}} </td>
+        </ng-container>
+
+        <!-- price Column -->
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <!-- action buttons Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="editProduct(element)">
+                        <mat-icon>edit</mat-icon>
+                        Edit
+                    </button>
+                    <button mat-menu-item (click)="deleteProduct(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        Delete
+                    </button>
+                </mat-menu>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="products.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>

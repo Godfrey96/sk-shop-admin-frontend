@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>{{ titleForm }} User Form</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="userForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Firstname</mat-label>
+            <input formControlName='firstname' matInput placeholder="Firstname">
+            <mat-error *ngIf="userFormError['firstname'].invalid && isSubmitted">
+                Firstname is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Lastname</mat-label>
+            <input formControlName='lastname' matInput placeholder="Lastname">
+            <mat-error *ngIf="userFormError['lastname'].invalid && isSubmitted">
+                Lastname is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" formControlName='email' matInput placeholder="Email address">
+            <mat-error *ngIf="userFormError['email'].invalid && isSubmitted">
+                Email is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input type="number" formControlName='phone' matInput placeholder="Phone number">
+            <mat-error *ngIf="userFormError['phone'].invalid && isSubmitted">
+                Phone number is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" formControlName='password' matInput placeholder="Password">
+            <mat-error *ngIf="userFormError['password'].invalid && isSubmitted">
+                Password is required
+            </mat-error>
+        </mat-form-field>
+
+        <div>
+            <mat-slide-toggle formControlName='isAdmin'>isAdmin</mat-slide-toggle>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <textarea formControlName='address' matInput placeholder="Enter address"></textarea>
+            <mat-error *ngIf="userFormError['address'].invalid && isSubmitted">
+                Address is required
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" (click)="onCancle()">
+        Close
+    </button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addUser()">
+        {{actionBtn}}
+    </button>
+</div>
