@@ -1,0 +1,20 @@
+{
+  "projects": {
+    "default": "shop-255c5"
+  },
+  "targets": {
+    "shop-255c5": {
+      "hosting": {
+        "sk-shopper-admin": [
+          "sk-shopper-admin"
+        ],
+        "sk-shopper-eccom-admin": [
+          "sk-shopper-eccom-admin"
+        ],
+        "sk-admin-shopper-eccomerce": [
+          "sk-admin-shopper-eccomerce"
+        ]
+      }
+    }
+  }
+}

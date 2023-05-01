@@ -1,1 +1,17 @@
-{}
+{
+  "hosting": {
+    "target": "sk-admin-shopper-eccomerce",
+    "public": "dist/sk-admin-ecommerce",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

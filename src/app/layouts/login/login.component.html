@@ -3,6 +3,11 @@
         <mat-toolbar color="primary">
             Admin Login Page
         </mat-toolbar>
+        <h3 class="text-center fw-bold">Credentials</h3>
+        <div>
+            <p class="text-center">Email: admin@gmail.com</p>
+            <p class="text-center">Password: 123456789</p>
+        </div>
         <form [formGroup]="loginFormGroup" fxLayoutAlign="stretch" fxLayout="column" class="login-form"
             (ngSubmit)="onSubmit()">
             <mat-form-field>
